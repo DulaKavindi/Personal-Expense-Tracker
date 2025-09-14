@@ -1,3 +1,4 @@
+
 const pool = require('../db');
 
 const ExpenseModel = {
@@ -9,17 +10,17 @@ const ExpenseModel = {
     const result = await pool.query('SELECT * FROM expenses WHERE id = $1', [id]);
     return result.rows[0];
   },
-  async create({ title, amount, category, date, description }) {
+  async create({ title, amount, category, date }) {
     const result = await pool.query(
-      'INSERT INTO expenses (title, amount, category, date, description) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-      [title, amount, category, date, description || '']
+      'INSERT INTO expenses (title, amount, category, date) VALUES ($1, $2, $3, $4) RETURNING *',
+      [title, amount, category, date]
     );
     return result.rows[0];
   },
-  async update(id, { title, amount, category, date, description }) {
+  async update(id, { title, amount, category, date }) {
     const result = await pool.query(
-      'UPDATE expenses SET title = $1, amount = $2, category = $3, date = $4, description = $5 WHERE id = $6 RETURNING *',
-      [title, amount, category, date, description || '', id]
+      'UPDATE expenses SET title = $1, amount = $2, category = $3, date = $4 WHERE id = $5 RETURNING *',
+      [title, amount, category, date, id]
     );
     return result.rows[0];
   },
