@@ -110,26 +110,8 @@ const Dashboard = ({
 
       {/* Quick Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {/* This Month */}
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-6 text-white">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-blue-100 text-sm">This Month</p>
-              <p className="text-2xl font-bold">{formatAmount(thisMonthTotal)}</p>
-            </div>
-            <DollarSign className="h-8 w-8 text-blue-200" />
-          </div>
-          <div className="flex items-center mt-4">
-            {monthlyChange >= 0 ? (
-              <ArrowUp className="h-4 w-4 mr-1" />
-            ) : (
-              <ArrowDown className="h-4 w-4 mr-1" />
-            )}
-            <span className="text-sm">
-              {Math.abs(monthlyChange)}% from last month
-            </span>
-          </div>
-        </div>
+       
+        
 
         {/* Total Transactions */}
         <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-6 text-white">

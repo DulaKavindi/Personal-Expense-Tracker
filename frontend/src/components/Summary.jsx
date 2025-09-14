@@ -24,12 +24,16 @@ const Summary = ({ summary }) => {
     return colors[category] || colors['Other'];
   };
 
+  // Get current month in YYYY-MM format
+  const now = new Date();
+  const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+  const thisMonthTotal = summary?.monthlyTotals?.[currentMonth] || 0;
   return (
     <div className="mb-6"> 
       {/* Main Stats Cards */}
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6"> 
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-6"> 
         {/* Total Amount */}
-  <div className="bg-white rounded-lg shadow-md p-6"> 
+        <div className="bg-white rounded-lg shadow-md p-6"> 
           <div className="flex items-center"> 
             <div className="p-2 bg-blue-100 rounded-md"> 
               <DollarSign className="h-6 w-6 text-blue-600" /> 
@@ -44,7 +48,7 @@ const Summary = ({ summary }) => {
         </div>
 
         {/* Total Count */}
-  <div className="bg-white rounded-lg shadow-md p-6"> 
+        <div className="bg-white rounded-lg shadow-md p-6"> 
           <div className="flex items-center"> 
             <div className="p-2 bg-green-100 rounded-md"> 
               <Hash className="h-6 w-6 text-green-600" /> 
@@ -59,7 +63,7 @@ const Summary = ({ summary }) => {
         </div>
 
         {/* Average Expense */}
-  <div className="bg-white rounded-lg shadow-md p-6"> 
+        <div className="bg-white rounded-lg shadow-md p-6"> 
           <div className="flex items-center"> 
             <div className="p-2 bg-purple-100 rounded-md"> 
               <TrendingUp className="h-6 w-6 text-purple-600" /> 
@@ -74,7 +78,7 @@ const Summary = ({ summary }) => {
         </div>
 
         {/* Categories Count */}
-  <div className="bg-white rounded-lg shadow-md p-6"> 
+        <div className="bg-white rounded-lg shadow-md p-6"> 
           <div className="flex items-center"> 
             <div className="p-2 bg-orange-100 rounded-md"> 
               <BarChart3 className="h-6 w-6 text-orange-600" /> 
@@ -83,6 +87,21 @@ const Summary = ({ summary }) => {
               <p className="text-sm font-medium text-gray-600">Categories Used</p> 
               <p className="text-2xl font-bold text-gray-900"> 
                 {summary.categoryTotals ? Object.keys(summary.categoryTotals).length : 0}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* This Month Card */}
+        <div className="bg-white rounded-lg shadow-md p-6"> 
+          <div className="flex items-center"> 
+            <div className="p-2 bg-indigo-100 rounded-md"> 
+              <BarChart3 className="h-6 w-6 text-indigo-600" /> 
+            </div>
+            <div className="ml-4"> 
+              <p className="text-sm font-medium text-gray-600">This Month</p> 
+              <p className="text-2xl font-bold text-gray-900"> 
+                {formatAmount(thisMonthTotal)}
               </p>
             </div>
           </div>
